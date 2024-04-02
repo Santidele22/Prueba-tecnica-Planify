@@ -1,0 +1,20 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html{
+  height: 100%;
+}
+:root{
+  
+}
+.main_container{
+  display: flex;
+  flex-flow: column wrap;
+  max-width: 100%;
+  margin: 0 1rem;
+  padding: 1rem;
+  gap:1rem;
+}
+
