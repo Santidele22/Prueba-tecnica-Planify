@@ -4,4 +4,24 @@
     display: flex;
     flex-flow: column;
     gap: .5rem;
+    font-size: 1.2rem;
+}
+.card_details{
+
+}
+.card_details details{
+    
+}
+.card_details details summary{
+background-color: rgb(225, 220, 220);
+margin: .2rem 0;
+}
+.details_info{
+    display: flex;
+    flex-flow: column wrap;
+    /* justify-content: space-between; */
+    gap: .5rem;
+    border: 1px solid;
+    margin: .5rem 0;
+    padding: .3rem;
 }
