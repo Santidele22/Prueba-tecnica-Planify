@@ -1,12 +1,26 @@
 import { services } from "../data/services";
-import SelectedButton from "./Botton_Selected";
+import { SelectedButton } from "./Botton_Selected";
 import "../styles/card/card.css"
-export default function Card() {
+import { useState } from "react";
+
+
+interface cardCategoryProps {
+    updateProgress: string;
+    updateTitle: string;
+}
+
+
+export const Card_Category: React.FC<cardCategoryProps> = () => {
+
+
     const categories = [...new Set(services.services.map(service => service.category))];
+    //Ordeno los servicios por categorio
     const servicesByCategories = categories.map(category => ({
         category: category,
         services: services.services.filter(service => service.category === category)
     }));
+
+  
 
     return (
         <article className="card_container">
@@ -22,7 +36,10 @@ export default function Card() {
                                 <div key={service.id} className="details_info">
                                     <p>{service.name}</p>
                                     <p>{service.description}</p>
-                                    <SelectedButton/>
+                                    <SelectedButton
+                                       isSelected={false}
+                                       handleClick={() => ""}
+                                    />
                                 </div>
                             ))}
                         </div>
