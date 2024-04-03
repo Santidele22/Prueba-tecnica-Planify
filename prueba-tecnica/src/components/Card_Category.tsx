@@ -1,32 +1,26 @@
-import { services } from "../data/services";
+//hooks
+import { useEffect, useState } from "react";
+//components
 import { SelectedButton } from "./Botton_Selected";
-import "../styles/card/card.css"
-import { useState } from "react";
+//style
+import "../styles/cards/card_category.css"
+//functions
+import { orderByCategories } from "../utils/orderCategories";
+//interfaces
+import { servicesInterfaces } from "../interfaces/interfaces";
+export const Card_Category = () => {
+    const [categories,setCategories] = useState<Array<servicesInterfaces>>()
 
-
-interface cardCategoryProps {
-    updateProgress: string;
-    updateTitle: string;
-}
-
-
-export const Card_Category: React.FC<cardCategoryProps> = () => {
-
-
-    const categories = [...new Set(services.services.map(service => service.category))];
-    //Ordeno los servicios por categorio
-    const servicesByCategories = categories.map(category => ({
-        category: category,
-        services: services.services.filter(service => service.category === category)
-    }));
-
-  
+    useEffect(() => {
+        const orderedCategories = orderByCategories();
+        setCategories(orderedCategories);
+    },[])
 
     return (
         <article className="card_container">
             <h3 className="card_title">Categorias</h3>
             <section className="card_details">
-                {servicesByCategories.map(service => (
+                {categories?.map(service => (
                     <details key={service.category}>
                         <summary>
                             {service.category}
@@ -37,8 +31,8 @@ export const Card_Category: React.FC<cardCategoryProps> = () => {
                                     <p>{service.name}</p>
                                     <p>{service.description}</p>
                                     <SelectedButton
-                                       isSelected={false}
-                                       handleClick={() => ""}
+                                        isSelected={false}
+                                        handleClick={() => ""}
                                     />
                                 </div>
                             ))}

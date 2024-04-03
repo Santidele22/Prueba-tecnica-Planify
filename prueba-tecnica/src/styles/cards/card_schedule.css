@@ -1,0 +1,23 @@
+.card_schedule{
+    display: flex;
+    flex-flow: column;
+    padding: 1rem;
+    gap: .3rem;
+    border: 1px solid;
+}
+.schedules_container{
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1rem;
+}
+.schedule_box{
+    width: 120px;
+    padding: 1rem;
+    border: 1px solid;
+    text-align: center;
+    background: #cdcaca;
+}
+.active{
+    background-color: gray;
+}
