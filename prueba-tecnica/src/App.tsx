@@ -7,7 +7,8 @@ import { Card_Confirmation } from "./components/Card_Confirmation"
 import Header from "./components/Header"
 //react-router
 import { Routes, Route, useLocation } from "react-router-dom"
-import {SlotSelected, servicesSelected } from "./interfaces/interfaces"
+import { SlotSelected, servicesSelected } from "./interfaces/interfaces"
+import { Footer } from "./components/footer"
 
 function App() {
   //Progress
@@ -17,13 +18,20 @@ function App() {
   const [selectedCategories, setselectedCategories] = useState<Array<servicesSelected>>([])
   //schedule
   const [selectedSchedules, setselectedSchedules] = useState<Array<SlotSelected>>([])
+  //services confirmado
+  const [service, setServices] = useState([])
+
+
 
 
   const location = useLocation()
   useEffect(() => {
-    if (location.pathname === "/schedules") {
+    if (location.pathname === "/") {
+      progressChange("Seleccionar servicios", "1")
+    }
+    else if (location.pathname === "/schedules") {
       progressChange("Seleccionar horarios", "2")
-    } else if (location.pathname === "/confirmation") {
+    } else {
       progressChange("Confirmar turno", "3")
     }
   }, [location])
@@ -35,22 +43,25 @@ function App() {
   }
 
   function handleClickCategory(value: Array<servicesSelected>) {
-      setselectedCategories(value)
+    setselectedCategories(value)
   }
 
   function handleClickSchedules(value: Array<SlotSelected>) {
     setselectedSchedules(value)
-}
+  }
 
   return (
+    <>
     <main className="main_container">
       <Header title={title} value={value} />
       <Routes>
         <Route path="/" element={<Card_Category updateCategories={handleClickCategory} />} />
-        <Route path="/schedules" element={<Card_Schedules updatedSchedules={handleClickSchedules}/>} />
+        <Route path="/schedules" element={<Card_Schedules updatedSchedules={handleClickSchedules} />} />
         <Route path="/confirmation" element={<Card_Confirmation />} />
       </Routes>
+      <Footer/>
     </main>
+    </>
   )
 }
 

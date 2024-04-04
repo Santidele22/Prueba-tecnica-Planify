@@ -1,18 +1,20 @@
-import { useEffect, useState } from "react"
-import { slots } from "../data/slots"
-import toast, { Toaster } from 'react-hot-toast';
 
+import { useEffect, useState } from "react"
+//data
+import { slots } from "../data/slots"
+//functions
+import toast, { Toaster } from 'react-hot-toast';
+//styles
 import "../styles/cards/card_schedule.css"
 //Interface
 import { SchedulesListProps, SlotSelected, SlotInterfaces } from "../interfaces/interfaces"
 import { SelectedButton } from "./Botton_Selected"
+import { NextLinksSection } from "./nextLinksSection";
 
 export const Card_Schedules: React.FC<SchedulesListProps> = ({ updatedSchedules }) => {
     // Estado para almacenar las selecciones de las ranuras de tiempo
     const [schedules, setSchedules] = useState<SlotInterfaces | null>(null);
     const [selectedSchedules, setSelectedSchedules] = useState<Array<SlotSelected>>([]);
-
-
 
     useEffect(() => {
         // Simulando carga de datos de slots
@@ -56,20 +58,28 @@ export const Card_Schedules: React.FC<SchedulesListProps> = ({ updatedSchedules 
 
 
     return (
-        <article className="card_schedule">
-            <h3>Seleccionar horarios</h3>
-            <span>{schedules?.date}</span>
-            <section className="schedules_container">
-                {schedules?.availableTimeslots.map((time) => (
-                    <SelectedButton
-                        isSelected={selectedSchedules.some(schedule => schedule.availableTimeslots === time)}
-                        handleClick={() => handleSelectSchedule(time)}
-                    >
-                        {time}
-                    </SelectedButton>
-                ))}
-            </section>
-            <Toaster />
-        </article>
+        <>
+            <article className="card_schedule">
+                <h3>Seleccionar horarios</h3>
+                <span>{schedules?.date}</span>
+                <section className="schedules_container">
+                    {schedules?.availableTimeslots.map((time) => (
+                        <SelectedButton
+                            isSelected={selectedSchedules.some(schedule => schedule.availableTimeslots === time)}
+                            handleClick={() => handleSelectSchedule(time)}
+                        >
+                            {time}
+                        </SelectedButton>
+                    ))}
+                </section>
+                <Toaster />
+            </article>
+            {
+                selectedSchedules.length > 0 ?
+                    <NextLinksSection nextRoute="/confirmation" lastRoute="/"  lastText="Anterior" nextText="Siguiente" isDisable={false} />
+                    :
+                    <NextLinksSection nextRoute="" lastRoute="/" lastText="Anterior" nextText="Siguiente" isDisable={true} />
+            }
+        </>
     )
 }

@@ -43,3 +43,10 @@ export interface CategoryListProps {
 export interface SchedulesListProps {
   updatedSchedules: (value: Array<SlotSelected>) => void;
 }
+export interface linksProps {
+  nextRoute: string
+  lastRoute:string
+  nextText:string
+  lastText:string
+  isDisable: boolean
+}

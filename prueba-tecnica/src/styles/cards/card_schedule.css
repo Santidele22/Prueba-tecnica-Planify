@@ -8,8 +8,10 @@
 .schedules_container{
     width: 100%;
     display: flex;
+    justify-content: space-evenly;
     flex-flow: row wrap;
     gap: 1rem;
+    margin-top: .5rem;;
 }
 .schedule_box{
     width: 120px;

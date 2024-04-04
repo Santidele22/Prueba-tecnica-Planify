@@ -3,8 +3,10 @@
   margin: 0;
   padding: 0;
 }
-html{
-  height: 100%;
+body{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 :root{
   
@@ -12,7 +14,8 @@ html{
 .main_container{
   display: flex;
   flex-flow: column wrap;
-  max-width: 100%;
+  max-width: 360px;
+  height: 100vh;
   margin: 0 1rem;
   padding: 1rem;
   gap:1rem;

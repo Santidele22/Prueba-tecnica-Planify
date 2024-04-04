@@ -1,0 +1,18 @@
+.nextLinkSection{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.link{
+    border: 4px solid;
+    padding: 1rem;
+    border-radius: .3rem;
+    text-decoration: none;
+    background: rgb(63, 52, 52);;
+    color: white;
+    cursor: pointer;
+}
+.disable{
+    cursor: none;
+    background-color: gray;
+}
