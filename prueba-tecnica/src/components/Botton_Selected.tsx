@@ -1,8 +1,8 @@
 import { selectedButtonProps } from "../interfaces/interfaces";
-export const SelectedButton: React.FC<selectedButtonProps> = ({ isSelected, handleClick }) =>  {
+export const SelectedButton: React.FC<selectedButtonProps> = ({ isSelected, handleClick, children}) =>  {
   return (
       <button onClick={handleClick} className={`btn ${isSelected ? "selected" : ""}`}>
-          {isSelected ? 'Seleccionado' : 'Seleccionar'}
+         {children}
       </button>
   );
 }

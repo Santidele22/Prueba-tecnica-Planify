@@ -1,5 +1,8 @@
-export const Card_Confirmation = () => {
+export const Card_Confirmation = (schedule,services) => {
     return(
-        <h1>Aca va a estar la etapa final</h1>
+        <article>
+            <span>Servicio:{services}</span>
+            <span>Fecha:{schedule}</span>
+        </article>
     )
 }
