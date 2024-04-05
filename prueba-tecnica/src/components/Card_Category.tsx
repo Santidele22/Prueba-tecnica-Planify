@@ -72,7 +72,7 @@ export const Card_Category: React.FC<CategoryListProps> = ({ updateCategories })
             </article>
             {
                 selectedServices.length > 0 ?
-                    <NextLinksSection nextRoute="/schedules" lastRoute="" nextText="Siguiente" lastText="Anterior" isDisable={true} />
+                    <NextLinksSection nextRoute="/schedules" lastRoute="" nextText="Siguiente" lastText="Anterior" isDisable={true}  handleClick={() => null}/>
                     : ""
             }
         </>

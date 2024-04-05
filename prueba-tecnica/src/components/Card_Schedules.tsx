@@ -76,9 +76,9 @@ export const Card_Schedules: React.FC<SchedulesListProps> = ({ updatedSchedules 
             </article>
             {
                 selectedSchedules.length > 0 ?
-                    <NextLinksSection nextRoute="/confirmation" lastRoute="/"  lastText="Anterior" nextText="Siguiente" isDisable={false} />
+                    <NextLinksSection nextRoute="/confirmation" lastRoute="/" lastText="Anterior" nextText="Siguiente" isDisable={false} handleClick={() => null}/>
                     :
-                    <NextLinksSection nextRoute="" lastRoute="/" lastText="Anterior" nextText="Siguiente" isDisable={true} />
+                    <NextLinksSection nextRoute="" lastRoute="/" lastText="Anterior" nextText="Siguiente" isDisable={true} handleClick={() => null}/>
             }
         </>
     )
