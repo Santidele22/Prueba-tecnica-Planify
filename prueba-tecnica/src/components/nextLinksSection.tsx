@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom"
 import { linksProps } from "../interfaces/interfaces"
 import "../styles/links/nextLinks.css"
-export const NextLinksSection: React.FC<linksProps> = ({ nextRoute, lastRoute, nextText, lastText, isDisable }) => {
+export const NextLinksSection: React.FC<linksProps> = ({ nextRoute, lastRoute, nextText, lastText, isDisable,handleClick }) => {
     const disableClass = isDisable ? "disable" : ""
     const location = useLocation()
     return (
@@ -15,7 +15,7 @@ export const NextLinksSection: React.FC<linksProps> = ({ nextRoute, lastRoute, n
                     :
                     <>
                         <Link to={lastRoute} className={`link`}>{lastText}</Link>
-                        <Link to={nextRoute} className={`link ${disableClass}`}>{nextText}</Link>
+                        <Link to={nextRoute} className={`link ${disableClass}`} onClick={handleClick}> {nextText}</Link>
                     </>
             }
         </section>

@@ -4,11 +4,13 @@ import { useEffect, useState } from "react"
 import { Card_Category } from "./components/Card_Category"
 import { Card_Schedules } from "./components/Card_Schedules"
 import { Card_Confirmation } from "./components/Card_Confirmation"
+import { Footer } from "./components/footer"
 import Header from "./components/Header"
+import { MyTurns } from "./components/my_turns"
 //react-router
 import { Routes, Route, useLocation } from "react-router-dom"
-import { SlotSelected, servicesSelected } from "./interfaces/interfaces"
-import { Footer } from "./components/footer"
+import { SelectedData, SlotSelected, servicesSelected } from "./interfaces/interfaces"
+import toast, { Toaster } from "react-hot-toast"
 
 function App() {
   //Progress
@@ -19,12 +21,10 @@ function App() {
   //schedule
   const [selectedSchedules, setselectedSchedules] = useState<Array<SlotSelected>>([])
   //services confirmado
-  const [service, setServices] = useState([])
-
-
-
-
+  const [service, setServices] = useState<Array<SelectedData>>([])
+  
   const location = useLocation()
+
   useEffect(() => {
     if (location.pathname === "/") {
       progressChange("Seleccionar servicios", "1")
@@ -50,17 +50,33 @@ function App() {
     setselectedSchedules(value)
   }
 
+  const handleServiceConfirmation = () => {
+    // Combine selectedCategories and selectedSchedules into a single object
+    const newService: SelectedData = {
+      categorySelected: selectedCategories,
+      schedulesSelected: selectedSchedules
+    };
+    // Add the combined object to the services array
+    setServices([...service, newService]);
+    // Clear selectedCategories and selectedSchedules
+    setselectedCategories([]);
+    setselectedSchedules([]);
+    toast.success("Turno confirmado")
+  };
+
   return (
     <>
-    <main className="main_container">
-      <Header title={title} value={value} />
-      <Routes>
-        <Route path="/" element={<Card_Category updateCategories={handleClickCategory} />} />
-        <Route path="/schedules" element={<Card_Schedules updatedSchedules={handleClickSchedules} />} />
-        <Route path="/confirmation" element={<Card_Confirmation />} />
-      </Routes>
-      <Footer/>
-    </main>
+      <main className="main_container">
+        <Header title={title} value={value} />
+        <Routes>
+          <Route path="/" element={<Card_Category updateCategories={handleClickCategory} />} />
+          <Route path="/schedules" element={<Card_Schedules updatedSchedules={handleClickSchedules} />} />
+          <Route path="/confirmation" element={<Card_Confirmation category={selectedCategories} schedulesSelected={selectedSchedules} handleClick={handleServiceConfirmation}/>} />
+          <Route path="/myturns" element={<MyTurns service={service}/>} /> 
+        </Routes>
+        <Footer />
+      </main>
+      <Toaster/>
     </>
   )
 }

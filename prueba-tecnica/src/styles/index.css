@@ -8,14 +8,18 @@ body{
   display: flex;
   flex-direction: column;
 }
-:root{
-  
+a{
+  text-decoration: none;
+  color: #000;
+}
+li{
+  list-style: none;
 }
 .main_container{
   display: flex;
   flex-flow: column wrap;
   max-width: 360px;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0 1rem;
   padding: 1rem;
   gap:1rem;
@@ -32,4 +36,9 @@ body{
 }
 .selected {
   background-color: rgb(63, 52, 52);
+}
+@media (width > 400px){
+  .main_container{
+    max-width: 100%;
+  }
 }

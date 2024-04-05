@@ -19,7 +19,6 @@ export const Card_Category: React.FC<CategoryListProps> = ({ updateCategories })
     const [categories, setCategories] = useState<Array<servicesInterfaces>>()
     //Contiene solo los servicios seleccionados
     const [selectedServices, setSelectedServices] = useState<Array<servicesSelected>>([]);
-    console.log("selectedServices from card_category" , selectedServices)
     //hooks para ordenar por categoria
     useEffect(() => {
         const orderedCategories = orderByCategories();
